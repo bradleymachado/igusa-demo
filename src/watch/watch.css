@@ -1,0 +1,159 @@
+/* WatchCss_v1.0 — This section is intended to style the Apple Watch face inside the 198×242 screen: black watch ground with white text, the digital time and date, the brand-colour complication ring, the 2-column grid of text-free event tiles with ink-on-tint count badges beneath, the stacked 1–5 severity picker, "Logged." + Undo, and the 300 ms tap pulse; every colour comes from tokens or the event colour. */
+
+.wf {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 6px 12px;
+  background: var(--watch-ground);
+  color: var(--watch-ink);
+  font-family: var(--font-ui);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+.wf::-webkit-scrollbar { display: none; }
+
+/* ---------- Header: complication ring + time / date (or "Logged." + Undo) ---------- */
+.wf-header {
+  flex: none;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 8px;
+  align-items: center;
+  height: 46px;
+}
+.wf-ring { display: block; width: 44px; height: 44px; }
+.wf-ring-track { fill: none; stroke: var(--watch-hairline); stroke-width: 3; }
+.wf-ring-arc { fill: none; stroke: var(--brand); stroke-width: 3; stroke-linecap: round; }
+.wf-ring-count {
+  fill: var(--watch-ink);
+  font: 600 13px var(--font-ui);
+  font-variant-numeric: tabular-nums;
+}
+.wf-clock { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; min-width: 0; }
+.wf-time {
+  font: 500 40px/34px var(--font-ui);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--watch-ink);
+  white-space: nowrap;
+}
+.wf-date {
+  font: 500 11px/12px var(--font-ui);
+  color: var(--watch-muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.wf-logged { display: flex; align-items: center; justify-content: flex-end; gap: 4px; height: 46px; }
+.wf-logged-text { font: 600 15px/1 var(--font-ui); color: var(--watch-ink); }
+.wf-undo {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 6px;
+  border: 0;
+  background: none;
+  color: var(--watch-ink);
+  font: 600 15px/1 var(--font-ui);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  border-radius: var(--radius-control);
+}
+.wf-undo:focus-visible, .wf-tile:focus-visible, .wf-sev:focus-visible, .wf-skip:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+/* ---------- Tiles: 2 columns, colour full-bleed, count badge beneath (ink on tint, never on the colour) ---------- */
+.wf-tiles {
+  flex: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 8px;
+}
+.wf-cell { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.wf-tile {
+  width: 100%;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  border: 0;
+  padding: 0;
+  border-radius: var(--radius-tile);
+  cursor: pointer;
+}
+.wf-badge {
+  display: inline-block;
+  min-width: 18px;
+  height: 12px;
+  padding: 0 5px;
+  border-radius: 6px;
+  color: var(--ink);
+  font: 600 10px/12px var(--font-ui);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+/* ---------- Pulse: 300 ms on the tile just tapped (two names so a repeat tap restarts it) ---------- */
+.wf-pulse.wf-pulse-0 { animation: wf-pulse-a 300ms ease-out; }
+.wf-pulse.wf-pulse-1 { animation: wf-pulse-b 300ms ease-out; }
+@keyframes wf-pulse-a {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 var(--watch-ink); }
+  40% { transform: scale(0.9); box-shadow: 0 0 0 3px var(--watch-ink); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 transparent; }
+}
+@keyframes wf-pulse-b {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 var(--watch-ink); }
+  40% { transform: scale(0.9); box-shadow: 0 0 0 3px var(--watch-ink); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .wf-pulse.wf-pulse-0, .wf-pulse.wf-pulse-1 { animation: none; } }
+
+/* ---------- Severity picker: covers the face; five stacked 44 px rows + Skip; scrolls inside the screen ---------- */
+.wf-picker {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  padding: 8px 12px 10px;
+  background: var(--watch-ground);
+  color: var(--watch-ink);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+.wf-picker::-webkit-scrollbar { display: none; }
+.wf-picker-title {
+  flex: none;
+  font: 600 12px/14px var(--font-ui);
+  color: var(--watch-muted);
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding-bottom: 2px;
+}
+.wf-sev, .wf-skip {
+  flex: none;
+  width: 100%;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  border: 0;
+  padding: 0;
+  border-radius: var(--radius-tile);
+  font: 600 17px/1 var(--font-ui);
+  cursor: pointer;
+}
+.wf-sev { color: var(--ink); }
+.wf-skip {
+  background: none;
+  border: 1px solid var(--watch-hairline);
+  color: var(--watch-ink);
+  font-weight: 500;
+}

@@ -49,6 +49,14 @@
   --dock-ground: rgba(255, 255, 255, 0.55);
 }
 
+/* Watch tokens (S8) — black watch ground, white watch ink. Added only; the values above are unchanged. */
+[data-theme="newsprint"] {
+  --watch-ground: #000000;
+  --watch-ink: #FFFFFF;
+  --watch-muted: rgba(255, 255, 255, 0.62);
+  --watch-hairline: rgba(255, 255, 255, 0.28);
+}
+
 /* Theme fallback (S6) — zero specificity, so any [data-theme] block wins. Until S15 adds [data-theme="tatami"],
    choosing Tatami keeps these Newsprint values instead of dropping every colour. Remove once Tatami exists if preferred. */
 :where(:root) {
@@ -91,4 +99,9 @@
   --app-tint-3: #DEE4E0;
   --app-tint-4: #E3DFE6;
   --dock-ground: rgba(255, 255, 255, 0.55);
+  /* S8 watch (added) */
+  --watch-ground: #000000;
+  --watch-ink: #FFFFFF;
+  --watch-muted: rgba(255, 255, 255, 0.62);
+  --watch-hairline: rgba(255, 255, 255, 0.28);
 }
