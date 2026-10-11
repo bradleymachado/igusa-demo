@@ -1,9 +1,11 @@
 // Stage_v1.0 — This section is intended to lay out the demo stage: iPhone and Apple Watch side by side (64 px gap) on viewports ≥ 1024 px, the pair scaled down with transform: scale() between 768 and 1023 px, and below 768 px the iPhone screen filling the viewport with the Watch behind a "Watch" toggle overlay; the presenter bar sits underneath.
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 import { PhoneFrame } from '../phone'
 import { WatchFrame } from '../watch'
 import { PresenterBar } from './PresenterBar'
+import { FLASH_MS } from './presenter'
+import type { Flash } from './presenter'
 import './stage.css'
 
 export const WIDE_MIN = 1024
@@ -32,6 +34,17 @@ export function Stage({ phone, watch, onReset }: { phone?: ReactNode; watch?: Re
   const pairRef = useRef<HTMLDivElement>(null)
   const [fit, setFit] = useState({ scale: 1, w: 0, h: 0 })
   const [watchOpen, setWatchOpen] = useState(false)
+  // S14: presenter highlight (widget ring / Watch bezel pulse), store-free, cleared after FLASH_MS.
+  const [flash, setFlash] = useState<Flash>(null)
+  const flashTimer = useRef<number | undefined>(undefined)
+  const narrowRef = useRef(false)
+  const onFlash = useCallback((f: Flash) => {
+    window.clearTimeout(flashTimer.current)
+    setFlash(f)
+    if (f === 'watch' && narrowRef.current) setWatchOpen(true)
+    if (f) flashTimer.current = window.setTimeout(() => setFlash(null), FLASH_MS)
+  }, [])
+  useEffect(() => () => window.clearTimeout(flashTimer.current), [])
 
   // Mid mode: measure the unscaled pair (offset sizes ignore transforms) and scale it to fit the viewport.
   useLayoutEffect(() => {
@@ -55,9 +68,10 @@ export function Stage({ phone, watch, onReset }: { phone?: ReactNode; watch?: Re
     : undefined
   const pairStyle: CSSProperties | undefined = scaled ? { transform: `scale(${fit.scale})` } : undefined
   const narrow = mode === 'narrow'
+  narrowRef.current = narrow
 
   return (
-    <div className={`stage stage--${mode}`} data-testid="stage" data-mode={mode} data-scale={scaled ? fit.scale.toFixed(3) : '1'}>
+    <div className={`stage stage--${mode}`} data-testid="stage" data-mode={mode} data-scale={scaled ? fit.scale.toFixed(3) : '1'} data-flash={flash ?? undefined}>
       <main className="stage-main" aria-label="Device stage">
         <div className="stage-fit" style={fitStyle}>
           <div className="stage-pair" ref={pairRef} style={pairStyle}>
@@ -85,7 +99,7 @@ export function Stage({ phone, watch, onReset }: { phone?: ReactNode; watch?: Re
           </button>
         )}
       </main>
-      <PresenterBar onReset={onReset} />
+      <PresenterBar onReset={onReset} onFlash={onFlash} />
     </div>
   )
 }
