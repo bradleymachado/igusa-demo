@@ -1,0 +1,162 @@
+/* WeaveCss_v1.0 — This section is intended to lay out the Weave tab (segmented control, trigger cards, locked pills, overlay strip and picker, hour-by-weekday heatmap) using only theme tokens; colour appears only on data cells, dots and legend marks. */
+
+.weave-screen {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 12px 16px 24px;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+/* Segmented control */
+.wv-seg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-control, 8px);
+  overflow: hidden;
+}
+.wv-seg-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 8px;
+  border: 0;
+  background: var(--control-ground, var(--ground));
+  color: var(--control-ink, var(--ink));
+  font: 500 14px var(--font-ui);
+  cursor: pointer;
+}
+.wv-seg-btn + .wv-seg-btn { border-left: 1px solid var(--hairline); }
+.wv-seg-btn[aria-pressed="true"] {
+  background: var(--control-selected-ground, var(--ink));
+  color: var(--control-selected-ink, var(--ground));
+}
+
+.wv-section { margin-top: 14px; }
+.wv-head {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.wv-lede { margin: 4px 0 12px; font-size: 13px; line-height: 1.35; color: var(--muted); }
+.wv-empty { margin: 12px 0; font-size: 13px; color: var(--muted); }
+
+/* See patterns (locked) */
+.wv-see {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  min-width: 44px;
+  margin: 0 0 10px;
+  border: 0;
+  border-radius: var(--radius-control, 8px);
+  background: var(--control-selected-ground, var(--ink));
+  color: var(--control-selected-ink, var(--ground));
+  font: 600 15px var(--font-ui);
+  cursor: pointer;
+}
+
+/* Trigger cards */
+.wv-list { list-style: none; margin: 0; padding: 0; }
+.wv-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 64px;
+  box-sizing: border-box;
+  padding: 12px 0;
+  border-top: 1px solid var(--grid-empty);
+}
+.wv-card:first-child { border-top: 1px solid var(--hairline); }
+.wv-dots { display: inline-flex; gap: 3px; padding-top: 4px; flex: none; }
+.wv-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.wv-card-body { min-width: 0; flex: 1; }
+.wv-text {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.wv-text--muted { color: var(--muted); }
+.wv-sub {
+  margin: 3px 0 0;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Locked pill: the real value, blurred and hidden from assistive tech */
+.wv-pill {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--grid-empty);
+  color: var(--ink);
+  filter: blur(4px);
+  user-select: none;
+  pointer-events: none;
+}
+.wv-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Overlay */
+.wv-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.wv-select {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-control, 8px);
+  background: var(--control-ground, var(--ground));
+  color: var(--control-ink, var(--ink));
+  font: 14px var(--font-ui);
+}
+.wv-strip { display: block; margin: 0 auto; overflow: visible; }
+.wv-legend { display: flex; gap: 16px; margin: 10px 0 0; font-size: 13px; }
+.wv-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.wv-caption { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--hairline); }
+
+/* When */
+.wv-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.wv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 22px;
+  background: var(--control-ground, var(--ground));
+  color: var(--control-ink, var(--ink));
+  font: 13px var(--font-ui);
+  cursor: pointer;
+}
+.wv-chip[aria-pressed="true"] {
+  background: var(--control-selected-ground, var(--ink));
+  color: var(--control-selected-ink, var(--ground));
+}
+.wv-when { display: block; margin: 0 auto; }
+.wv-axis { font: 10px var(--font-ui); fill: var(--muted); }
+.wv-most { margin-top: 12px; text-align: center; }
+
+.wv-seg-btn:focus-visible, .wv-see:focus-visible, .wv-select:focus-visible, .wv-chip:focus-visible {
+  outline: 2px solid var(--focus-ring, var(--ink));
+  outline-offset: 2px;
+}
