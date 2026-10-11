@@ -3,7 +3,7 @@
 Clickable web prototype of the Igusa iPhone app for investor pitches. Spec: `PRD.md`. Product sources of truth: `..\Igusa_ConceptBrief_v1.1.md`, `..\01_Assignments\Igusa\Igusa_BuildPlan_v1.0.md` (§2 fixed inputs, §3 check values, design and language rules).
 
 ## Stack
-Node 25, Vite + React 18 + TypeScript, plain CSS custom properties, Vitest (unit), Playwright (screens). No UI kit, no backend, no model calls.
+Node 25, Vite + React 19 + TypeScript, plain CSS custom properties, Vitest (unit), Playwright (screens). No UI kit, no backend, no model calls.
 
 ## Commands
 - `npm run dev` — local server
