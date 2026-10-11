@@ -1,0 +1,240 @@
+/* StageCss_v1.0 — This section is intended to lay out the device stage (iPhone + Watch side by side, scaled mid-width, phone-only narrow), draw both device frames in CSS, and style the presenter bar; every colour comes from tokens. */
+
+.stage {
+  --phone-screen-w: 390px;
+  --phone-screen-h: 844px;
+  --phone-screen-r: 52px;
+  --phone-bezel: 14px;
+  --watch-screen-w: 198px;
+  --watch-screen-h: 242px;
+  --watch-screen-r: 42px;
+  --watch-bezel: 12px;
+  --device-rim: 2.5px;
+  --device-gap: 64px;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--stage-ground);
+  color: var(--ink);
+}
+
+.stage-main {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 24px 24px 8px;
+}
+
+.stage-pair {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: var(--device-gap);
+  width: max-content;
+}
+
+.stage-fit { position: relative; }
+.stage--mid .stage-pair { transform-origin: top left; }
+
+/* ---------- iPhone frame ---------- */
+.phone-frame {
+  position: relative;
+  padding: var(--phone-bezel);
+  background: var(--bezel);
+  border: var(--device-rim) solid var(--rim);
+  border-radius: calc(var(--phone-screen-r) + var(--phone-bezel) + var(--device-rim));
+  box-shadow: var(--device-shadow);
+}
+
+.phone-screen {
+  position: relative;
+  width: var(--phone-screen-w);
+  height: var(--phone-screen-h);
+  border-radius: var(--phone-screen-r);
+  overflow: hidden;
+  background: var(--ground);
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 125px;
+  height: 37px;
+  border-radius: 19px;
+  background: var(--island);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.phone-content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* ---------- Status bar ---------- */
+.status-bar {
+  flex: none;
+  height: 54px;
+  display: grid;
+  grid-template-columns: 1fr 125px 1fr;
+  align-items: center;
+  padding: 4px 22px 0;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+  user-select: none;
+}
+.status-time { justify-self: center; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.status-glyphs { justify-self: center; display: flex; align-items: center; gap: 6px; }
+.status-glyphs svg { display: block; }
+
+/* ---------- Apple Watch frame ---------- */
+.watch-frame {
+  position: relative;
+  padding: var(--watch-bezel);
+  background: var(--bezel);
+  border: var(--device-rim) solid var(--rim);
+  border-radius: calc(var(--watch-screen-r) + var(--watch-bezel) + var(--device-rim) + 6px);
+  box-shadow: var(--device-shadow);
+}
+
+.watch-screen {
+  position: relative;
+  width: var(--watch-screen-w);
+  height: var(--watch-screen-h);
+  border-radius: var(--watch-screen-r);
+  overflow: hidden;
+  background: var(--ground);
+}
+
+.watch-crown {
+  position: absolute;
+  right: -10px;
+  top: 52px;
+  width: 9px;
+  height: 36px;
+  border-radius: 0 5px 5px 0;
+  background: var(--device-button);
+  border: 1px solid var(--rim);
+  border-left: 0;
+}
+
+.watch-side-button {
+  position: absolute;
+  right: -6px;
+  top: 124px;
+  width: 5px;
+  height: 54px;
+  border-radius: 0 3px 3px 0;
+  background: var(--device-button);
+  border: 1px solid var(--rim);
+  border-left: 0;
+}
+
+/* ---------- Placeholder screens (S7 / S8 replace) ---------- */
+.device-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: var(--ground);
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Narrow (< 768 px): phone fills the viewport, Watch behind a toggle ---------- */
+.stage--narrow .stage-main { padding: 0; display: block; justify-items: stretch; }
+.stage--narrow .stage-pair { display: block; width: 100%; }
+.stage--narrow .phone-frame { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.stage--narrow .phone-screen { width: 100%; height: 100vh; height: 100dvh; border-radius: 0; }
+.stage--narrow .phone-island { display: none; }
+
+.stage--narrow .stage-watch-slot { display: none; }
+.stage--narrow .stage-watch-slot[data-open="true"] {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-scrim);
+  z-index: 20;
+}
+
+.watch-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 21;
+  box-shadow: var(--device-shadow);
+}
+
+/* ---------- Presenter bar ---------- */
+.presenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px 0;
+  margin-top: auto;
+}
+
+.presenter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 20px;
+}
+
+.presenter-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.stage-button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-control);
+  background: var(--control-ground);
+  color: var(--control-ink);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.stage-button[aria-pressed="true"] {
+  background: var(--control-selected-ground);
+  color: var(--control-selected-ink);
+}
+.stage-button:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+.step-num { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.presenter-footer {
+  width: 100%;
+  text-align: center;
+  padding: 14px 16px 16px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--grid-empty);
+}
+
+@media (max-width: 767px) {
+  .presenter { padding-bottom: 72px; } /* keeps the footer clear of the fixed Watch toggle */
+}

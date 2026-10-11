@@ -16,3 +16,52 @@
   --font-head: 'Newsreader', Georgia, 'Times New Roman', serif;
   --font-ui: 'Libre Franklin', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
+
+/* Stage tokens (S6) — device frames, presenter controls and overlay. Added only; the values above are unchanged. */
+[data-theme="newsprint"] {
+  --stage-ground: #FAFAF8;
+  --bezel: #1C1C1E;
+  --rim: #48484A;
+  --island: #000000;
+  --device-button: #2C2C2E;
+  --device-shadow: 0 18px 40px rgba(17, 17, 17, 0.18);
+  --overlay-scrim: rgba(17, 17, 17, 0.55);
+  --control-ground: #FFFFFF;
+  --control-ink: #111111;
+  --control-selected-ground: #111111;
+  --control-selected-ink: #FFFFFF;
+  --focus-ring: #3F8A84;
+  --radius-control: 8px;
+}
+
+/* Theme fallback (S6) — zero specificity, so any [data-theme] block wins. Until S15 adds [data-theme="tatami"],
+   choosing Tatami keeps these Newsprint values instead of dropping every colour. Remove once Tatami exists if preferred. */
+:where(:root) {
+  --ground: #FFFFFF;
+  --ink: #111111;
+  --hairline: #111111;
+  --muted: #6B6B6B;
+  --grid-empty: #F0F0F0;
+  --brand: #3F8A84;
+  --event-1: #B5462F;
+  --event-2: #3F6694;
+  --event-3: #C08A2E;
+  --event-4: #7A4E82;
+  --event-5: #5E7F3A;
+  --radius-tile: 12px;
+  --font-head: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Libre Franklin', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --stage-ground: #FAFAF8;
+  --bezel: #1C1C1E;
+  --rim: #48484A;
+  --island: #000000;
+  --device-button: #2C2C2E;
+  --device-shadow: 0 18px 40px rgba(17, 17, 17, 0.18);
+  --overlay-scrim: rgba(17, 17, 17, 0.55);
+  --control-ground: #FFFFFF;
+  --control-ink: #111111;
+  --control-selected-ground: #111111;
+  --control-selected-ink: #FFFFFF;
+  --focus-ring: #3F8A84;
+  --radius-control: 8px;
+}
