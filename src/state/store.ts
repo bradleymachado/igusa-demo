@@ -52,6 +52,8 @@ export interface IgusaState {
   presenterStep: PresenterStep
   appTab: AppTab
   appOpen: boolean
+  /** Weave unlock sheet shown over the app view (S12 opens, S13 closes). */
+  paywallOpen: boolean
 }
 
 export interface IgusaActions {
@@ -71,6 +73,7 @@ export interface IgusaActions {
   updateEntryTime: (id: string, ts: number) => void
   setTheme: (theme: Theme) => void
   unlockWeave: () => void
+  setPaywallOpen: (open: boolean) => void
   setPresenterStep: (step: PresenterStep) => void
   setAppTab: (tab: AppTab) => void
   setAppOpen: (open: boolean) => void
@@ -96,6 +99,7 @@ export const INITIAL_STATE: IgusaState = {
   presenterStep: 1,
   appTab: 'log',
   appOpen: false,
+  paywallOpen: false,
 }
 
 let entryCounter = 0
@@ -251,7 +255,8 @@ export const useIgusaStore = create<IgusaStore>()(
         set({ theme })
       },
 
-      unlockWeave: () => set({ weaveUnlocked: true }),
+      unlockWeave: () => set({ weaveUnlocked: true, paywallOpen: false }),
+      setPaywallOpen: (paywallOpen) => set({ paywallOpen }),
       setPresenterStep: (presenterStep) => set({ presenterStep }),
       setAppTab: (appTab) => set({ appTab }),
       setAppOpen: (appOpen) => set({ appOpen }),
