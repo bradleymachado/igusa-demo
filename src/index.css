@@ -1,0 +1,10 @@
+/* IndexCss_v1.0 — This section is intended to set page-level base styles from theme tokens (no hard-coded colours). */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+}
+h1, h2, h3 { font-family: var(--font-head); font-weight: 500; }

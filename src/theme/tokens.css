@@ -1,0 +1,18 @@
+/* Tokens_v1.0 — This section is intended to define the theme custom properties; components read colours, radii and fonts only from these tokens. */
+
+[data-theme="newsprint"] {
+  --ground: #FFFFFF;
+  --ink: #111111;
+  --hairline: #111111;
+  --muted: #6B6B6B;
+  --grid-empty: #F0F0F0;
+  --brand: #3F8A84;      /* Patina — brand only, never an event colour */
+  --event-1: #B5462F;    /* Brick */
+  --event-2: #3F6694;    /* Slate */
+  --event-3: #C08A2E;    /* Ochre */
+  --event-4: #7A4E82;    /* Plum */
+  --event-5: #5E7F3A;    /* Moss */
+  --radius-tile: 12px;
+  --font-head: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Libre Franklin', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+shots/
+00_Plan/
+.code-strategy/
+test-results/
+playwright-report/
+.env
+
+# Vite scaffold (S2)
+*.log
+dist-ssr/
+*.local
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
