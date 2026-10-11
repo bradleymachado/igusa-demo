@@ -65,6 +65,64 @@
   --page-shadow: 0 1px 2px rgba(17, 17, 17, 0.06), 0 4px 14px rgba(17, 17, 17, 0.08);
 }
 
+/* Tatami tokens (S15) — PRD direction B: warm paper ground, warm ink, woven grid cells. Event colours, brand,
+   device hardware (--bezel, --rim, --island, --device-button) and the black watch face are unchanged on purpose. */
+[data-theme="tatami"] {
+  --ground: #F4EFE4;
+  --ink: #2A2622;
+  --hairline: #8A7F6A;
+  --muted: #6F665A;
+  --grid-empty: #E6DFCF;
+  --brand: #3F8A84;      /* Patina — unchanged */
+  --event-1: #B5462F;    /* Brick — unchanged */
+  --event-2: #3F6694;    /* Slate — unchanged */
+  --event-3: #C08A2E;    /* Ochre — unchanged */
+  --event-4: #7A4E82;    /* Plum — unchanged */
+  --event-5: #5E7F3A;    /* Moss — unchanged */
+  --radius-tile: 4px;
+  --font-head: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Libre Franklin', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Stage (S6) */
+  --stage-ground: #EDE6D6;
+  --bezel: #1C1C1E;
+  --rim: #48484A;
+  --island: #000000;
+  --device-button: #2C2C2E;
+  --device-shadow: 0 18px 40px rgba(42, 38, 34, 0.20);
+  --overlay-scrim: rgba(42, 38, 34, 0.55);
+  --control-ground: #F4EFE4;
+  --control-ink: #2A2622;
+  --control-selected-ground: #2A2622;
+  --control-selected-ink: #F4EFE4;
+  --focus-ring: #3F8A84;
+  --radius-control: 8px;
+  /* Home screen (S7) */
+  --wallpaper: linear-gradient(180deg, #F3EDE1 0%, #E4DAC5 100%);
+  --widget-ground: #FBF8F1;
+  --widget-radius: 22px;
+  --widget-shadow: 0 1px 2px rgba(42, 38, 34, 0.07), 0 6px 18px rgba(42, 38, 34, 0.08);
+  --icon-ground: #FBF8F1;
+  --radius-icon: 14px;
+  --app-tint-1: #E2DACB;
+  --app-tint-2: #E8DDCB;
+  --app-tint-3: #DCDCC9;
+  --app-tint-4: #E3D8D2;
+  --dock-ground: rgba(251, 248, 241, 0.55);
+  /* Watch (S8) — black watch face, unchanged */
+  --watch-ground: #000000;
+  --watch-ink: #FFFFFF;
+  --watch-muted: rgba(255, 255, 255, 0.62);
+  --watch-hairline: rgba(255, 255, 255, 0.28);
+  /* Summary page (S13) */
+  --page-desk: #EDE6D6;
+  --page-ground: #FBF8F1;
+  --page-edge: #D6CCB8;
+  --page-shadow: 0 1px 2px rgba(42, 38, 34, 0.07), 0 4px 14px rgba(42, 38, 34, 0.09);
+  /* Woven cells (S15) — one 1 px strand of 12 % ink every 2.5 px at 45°, layered over the inline tint (grid.css). */
+  --weave-strand: rgba(42, 38, 34, 0.12);
+  --weave-texture: repeating-linear-gradient(45deg, var(--weave-strand) 0 1px, transparent 1px 2.5px);
+}
+
 /* Theme fallback (S6) — zero specificity, so any [data-theme] block wins. Until S15 adds [data-theme="tatami"],
    choosing Tatami keeps these Newsprint values instead of dropping every colour. Remove once Tatami exists if preferred. */
 :where(:root) {

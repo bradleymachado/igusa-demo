@@ -90,3 +90,34 @@
 }
 .dp-edit { display: flex; align-items: center; gap: 8px; padding: 0 0 8px 50px; }
 .dp-time-input { min-height: 44px; padding: 0 8px; border: 1px solid var(--hairline); border-radius: var(--radius-control, 8px); background: var(--ground); color: var(--ink); font: inherit; }
+
+/* Tatami woven cells (S15) — additive, scoped to [data-theme="tatami"]. The inline tint fills stay untouched; a
+   pointer-transparent texture layer (--weave-texture) sits over them. Year strip: one overlay across the SVG, masked to
+   the 53 × 7 cell lattice (5 px cells, 1.5 px gaps, 0.5 px viewBox offset) so the gaps stay plain paper.
+   Month calendar: a ::before layer inside each past/today day button, beneath the day number. */
+[data-theme="tatami"] .ys-wrap::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 344px;
+  height: 45px;
+  margin-left: -172px;
+  background-image: var(--weave-texture);
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 5px, transparent 5px 6.5px), repeating-linear-gradient(180deg, #000 0 5px, transparent 5px 6.5px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 5px, transparent 5px 6.5px), repeating-linear-gradient(180deg, #000 0 5px, transparent 5px 6.5px);
+  -webkit-mask-position: 0.5px 0.5px;
+  mask-position: 0.5px 0.5px;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  pointer-events: none;
+}
+[data-theme="tatami"] .mc-day:not(.mc-day--future)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--weave-texture);
+  pointer-events: none;
+}
+[data-theme="tatami"] .mc-num { position: relative; }
