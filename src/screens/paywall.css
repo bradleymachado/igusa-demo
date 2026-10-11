@@ -1,0 +1,112 @@
+/* Paywall_v1.0 — This section is intended to style the Weave unlock sheet (close button, headline, plan cards, Continue, text buttons, toast) in ink, ground and control tokens only; the brand colour appears only as the ring of the yearly badge. */
+
+.pw-sheet {
+  position: relative;
+  min-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 64px 24px 32px;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-ui);
+}
+.pw-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+.pw-title {
+  margin: 0;
+  font: 400 28px/1.15 var(--font-head);
+}
+.pw-lede {
+  margin: 8px 0 24px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.pw-plans {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pw-plan {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 0 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-control);
+  background: var(--control-ground);
+  color: var(--control-ink);
+  font: 400 16px var(--font-ui);
+  text-align: left;
+  cursor: pointer;
+}
+.pw-plan.is-on { box-shadow: inset 0 0 0 1px var(--ink); }
+.pw-radio {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+}
+.pw-plan.is-on .pw-radio { border-width: 6px; }
+.pw-plan-label { flex: 1; }
+.pw-plan-name { font-weight: 600; }
+.pw-plan-price { font-variant-numeric: tabular-nums; }
+.pw-badge {
+  flex: none;
+  padding: 3px 8px;
+  border: 1.5px solid var(--brand);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.pw-continue {
+  min-height: 50px;
+  margin-top: 24px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--control-selected-ground);
+  color: var(--control-selected-ink);
+  font: 600 17px var(--font-ui);
+  cursor: pointer;
+}
+.pw-text {
+  min-height: 44px;
+  margin-top: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 500 15px var(--font-ui);
+  cursor: pointer;
+}
+.pw-sheet button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.pw-toast-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  min-height: 40px;
+}
+.pw-toast {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-control);
+  background: var(--control-selected-ground);
+  color: var(--control-selected-ink);
+  font-size: 13px;
+}

@@ -1,0 +1,126 @@
+/* Summary_v1.0 — This section is intended to style the Summary tab as a printed sheet inside the phone (page card, sections, rows, mini grids, footer, Share button, toast); colours come only from tokens or event data. */
+
+.sm-screen {
+  position: relative;
+  min-height: 100%;
+  padding: 16px 16px 24px;
+  background: var(--page-desk);
+  color: var(--ink);
+  font-family: var(--font-ui);
+}
+.sm-page {
+  background: var(--page-ground);
+  border: 1px solid var(--page-edge);
+  box-shadow: var(--page-shadow);
+  padding: 20px 18px 14px;
+}
+.sm-title {
+  margin: 0;
+  font: 400 24px/1.15 var(--font-head);
+  color: var(--ink);
+}
+.sm-sub {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.sm-section {
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px solid var(--page-edge);
+}
+.sm-h2 {
+  margin: 0 0 6px;
+  font: 600 11px var(--font-ui);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sm-row { padding: 6px 0; }
+.sm-row + .sm-row { border-top: 1px solid var(--grid-empty); }
+.sm-row-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sm-dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.sm-name { flex: 1; font-size: 15px; }
+.sm-count {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.sm-meta {
+  margin: 2px 0 6px 18px;
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.sm-grid { display: block; margin-left: 18px; }
+.sm-empty { margin: 0; font-size: 13px; color: var(--muted); }
+.sm-patterns {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.sm-pattern + .sm-pattern { margin-top: 2px; }
+.sm-pill {
+  display: inline-block;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--grid-empty);
+  color: var(--ink);
+  filter: blur(4px);
+  user-select: none;
+}
+.sm-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.sm-foot {
+  margin-top: 16px;
+  padding-top: 8px;
+  border-top: 1px solid var(--page-edge);
+  font-size: 11px;
+  color: var(--muted);
+}
+.sm-share {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-control);
+  background: var(--control-ground);
+  color: var(--control-ink);
+  font: 500 15px var(--font-ui);
+  cursor: pointer;
+}
+.sm-share:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.sm-toast-wrap {
+  position: sticky;
+  bottom: 12px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.sm-toast {
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-control);
+  background: var(--control-selected-ground);
+  color: var(--control-selected-ink);
+  font-size: 13px;
+}
