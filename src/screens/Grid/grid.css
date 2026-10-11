@@ -1,0 +1,92 @@
+/* GridCss_v1.0 — This section is intended to lay out the Grid tab (chips, toggle, summary, year strip, month calendar, day panel) using only theme tokens; colour appears only on data cells and event dots. */
+
+.grid-screen {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 12px 16px 24px;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+/* Filters */
+.gr-filters { display: flex; flex-direction: column; gap: 8px; }
+.gr-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.gr-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 44px; min-width: 44px; padding: 0 12px;
+  border: 1px solid var(--hairline); border-radius: 22px;
+  background: var(--control-ground, var(--ground)); color: var(--control-ink, var(--ink));
+  font: inherit; font-size: 13px; cursor: pointer;
+}
+.gr-chip[aria-pressed="true"] {
+  background: var(--control-selected-ground, var(--ink));
+  color: var(--control-selected-ink, var(--ground));
+}
+.gr-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.gr-seg { display: inline-flex; align-self: flex-start; border: 1px solid var(--hairline); border-radius: var(--radius-control, 8px); overflow: hidden; }
+.gr-seg-btn {
+  min-height: 44px; min-width: 88px; padding: 0 14px; border: 0;
+  background: var(--control-ground, var(--ground)); color: var(--control-ink, var(--ink));
+  font: inherit; font-size: 13px; cursor: pointer;
+}
+.gr-seg-btn + .gr-seg-btn { border-left: 1px solid var(--hairline); }
+.gr-seg-btn[aria-pressed="true"] { background: var(--control-selected-ground, var(--ink)); color: var(--control-selected-ink, var(--ground)); }
+.gr-chip:focus-visible, .gr-seg-btn:focus-visible, .mc-nav:focus-visible, .mc-day:focus-visible, .dp-btn:focus-visible, .dp-time-input:focus-visible {
+  outline: 2px solid var(--focus-ring, var(--ink)); outline-offset: 2px;
+}
+
+/* Summary */
+.gr-summary { margin: 14px 0 8px; border-top: 1px solid var(--hairline); padding-top: 10px; }
+.gr-summary-line { margin: 0 0 2px; font-size: 14px; font-variant-numeric: tabular-nums; }
+.gr-note { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+
+/* Year strip */
+.ys-wrap { position: relative; padding: 8px 0 10px; touch-action: none; cursor: ew-resize; user-select: none; }
+.ys-svg { display: block; margin: 0 auto; overflow: visible; }
+.ys-week { fill: none; stroke: var(--ink); stroke-width: 1px; pointer-events: none; }
+.gr-visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* Month calendar */
+.mc { border-top: 1px solid var(--hairline); padding-top: 6px; }
+.mc-head { display: flex; align-items: center; justify-content: space-between; }
+.mc-title { margin: 0; font-family: var(--font-head); font-size: 20px; font-weight: 500; }
+.mc-nav {
+  width: 44px; height: 44px; border: 0; background: transparent; color: var(--ink);
+  font-size: 24px; line-height: 1; cursor: pointer; border-radius: 22px;
+}
+.mc-nav:disabled { color: var(--muted); opacity: 0.4; cursor: default; }
+.mc-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.mc-initials { margin: 2px 0 4px; text-align: center; font-size: 11px; color: var(--muted); }
+.mc-blank { min-height: 44px; }
+.mc-day {
+  position: relative; min-height: 44px; min-width: 44px; padding: 0; border: 0; border-radius: 6px;
+  color: var(--ink); font: inherit; font-size: 13px; font-variant-numeric: tabular-nums; cursor: pointer;
+}
+.mc-day--dark { color: var(--ground); }
+.mc-day--future { color: var(--muted); cursor: default; }
+.mc-day--selected { box-shadow: inset 0 0 0 1.5px var(--ink), inset 0 0 0 3px var(--ground); }
+.mc-today { position: absolute; left: 50%; bottom: 5px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--brand); }
+
+/* Day panel */
+.dp { margin-top: 14px; border-top: 1px solid var(--hairline); padding-top: 8px; }
+.dp-title { display: flex; align-items: baseline; justify-content: space-between; margin: 0 0 6px; font-family: var(--font-head); font-size: 18px; font-weight: 500; }
+.dp-count { font-family: var(--font-ui); font-size: 12px; color: var(--muted); }
+.dp-empty { margin: 4px 0; color: var(--muted); font-size: 13px; }
+.dp-list { list-style: none; margin: 0; padding: 0; }
+.dp-row { border-bottom: 1px solid var(--grid-empty); }
+.dp-main { display: flex; align-items: center; gap: 8px; min-height: 48px; }
+.dp-time { width: 42px; font-variant-numeric: tabular-nums; }
+.dp-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.dp-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dp-sev { color: var(--muted); font-variant-numeric: tabular-nums; }
+.dp-btn {
+  min-height: 44px; min-width: 44px; padding: 0 8px; border: 0; background: transparent;
+  color: var(--ink); font: inherit; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+}
+.dp-edit { display: flex; align-items: center; gap: 8px; padding: 0 0 8px 50px; }
+.dp-time-input { min-height: 44px; padding: 0 8px; border: 1px solid var(--hairline); border-radius: var(--radius-control, 8px); background: var(--ground); color: var(--ink); font: inherit; }
