@@ -1,0 +1,130 @@
+/* WidgetsCss_v1.0 — This section is intended to style the small, medium and large Igusa widgets: white widget surface, full-bleed text-free event tiles, counts in the UI face, the tinted 1–5 severity row, "Logged." + Undo, the 300 ms tap pulse and the 16-week mini grid; every colour comes from tokens or the event colour. */
+
+.widget {
+  position: relative;
+  background: var(--widget-ground);
+  border-radius: var(--widget-radius);
+  box-shadow: var(--widget-shadow);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.widget--medium { width: 364px; height: 170px; padding: 4px 14px 12px; }
+.widget--small  { width: 170px; height: 170px; }
+.widget--large  { width: 364px; height: 382px; padding: 4px 14px 14px; }
+
+/* ---------- Header: "Igusa" + "Today", or "Logged." + Undo ---------- */
+.w-header {
+  flex: none;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+}
+.w-brand, .w-today { font-weight: 600; letter-spacing: 0.02em; }
+.w-logged { display: inline-flex; align-items: center; gap: 6px; }
+.w-logged-text { font-size: 13px; color: var(--ink); font-weight: 600; }
+.w-undo {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: 600 13px/1 var(--font-ui);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ---------- Tiles + counts ---------- */
+.w-tiles-block { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 4px; }
+.w-tiles { flex: 1; min-height: 44px; display: grid; gap: 8px; }
+.w-counts { flex: none; display: grid; gap: 8px; height: 18px; }
+.w-count {
+  text-align: center;
+  font: 600 13px/18px var(--font-ui);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.w-tile, .ws-tile {
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  padding: 0;
+  border-radius: var(--radius-tile);
+  cursor: pointer;
+}
+.widget--large .w-tiles-block { flex: none; height: 104px; }
+
+/* ---------- Severity row ---------- */
+.w-sev {
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  padding: 0;
+  border-radius: var(--radius-tile);
+  color: var(--ink);
+  font: 600 17px/1 var(--font-ui);
+  cursor: pointer;
+}
+.w-caption {
+  flex: none;
+  height: 18px;
+  text-align: center;
+  font: 500 11px/18px var(--font-ui);
+  color: var(--muted);
+}
+
+/* ---------- Pulse: 300 ms on the tile just tapped (two names so a repeat tap restarts it) ---------- */
+.pulse.pulse-0 { animation: igusa-pulse-a 300ms ease-out; }
+.pulse.pulse-1 { animation: igusa-pulse-b 300ms ease-out; }
+@keyframes igusa-pulse-a { 0% { transform: scale(1); } 40% { transform: scale(0.92); } 100% { transform: scale(1); } }
+@keyframes igusa-pulse-b { 0% { transform: scale(1); } 40% { transform: scale(0.92); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .pulse.pulse-0, .pulse.pulse-1 { animation: none; } }
+
+/* ---------- Small widget ---------- */
+.ws-tile { flex: 1; width: 100%; border-radius: 0; }
+.ws-foot {
+  flex: none;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 0 14px;
+}
+.ws-count {
+  font: 500 30px/1 var(--font-head);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.ws-name { font-size: 11px; color: var(--muted); padding-right: 10px; }
+.ws-sev {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  padding: 10px;
+}
+.ws-sev .w-sev { grid-column: span 2; }
+.ws-sev .ws-sev-4, .ws-sev .ws-sev-5 { grid-column: span 3; }
+
+/* ---------- Large widget mini grid ---------- */
+.wl-grid-block { flex: 1; display: flex; flex-direction: column; gap: 8px; padding-top: 14px; min-height: 0; }
+.wl-grid-label { font: 600 11px/14px var(--font-ui); color: var(--muted); letter-spacing: 0.02em; }
+.wl-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  gap: 3px;
+}
+.wl-cell { border-radius: 3px; background: var(--grid-empty); }
+.wl-cell--future { background: transparent; }

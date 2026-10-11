@@ -1,0 +1,84 @@
+/* HomeCss_v1.0 — This section is intended to lay out the iPhone home screen: token wallpaper, a 4-column grid of 60 px icons with labels (80 px rows, 10 px row gap, so a 2-row widget is 170 px), the widget spans, the large widget block, and a sticky translucent dock; every colour comes from tokens. */
+
+.home {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 13px 0;
+  background: var(--wallpaper);
+  font-family: var(--font-ui);
+  color: var(--ink);
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* (364 − 3 × 24) / 4 = 73 px; 2 columns + gap = 170 px */
+  grid-auto-rows: 80px;
+  column-gap: 24px;
+  row-gap: 10px;
+  width: 364px;
+}
+
+.home-span-medium { grid-column: 1 / -1; grid-row: span 2; }
+.home-span-small  { grid-column: span 2; grid-row: span 2; }
+.home-large { width: 364px; }
+
+.home-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-icon {
+  width: 60px;
+  height: 60px;
+  flex: none;
+  border-radius: var(--radius-icon);
+}
+.home-icon--tint-1 { background: var(--app-tint-1); }
+.home-icon--tint-2 { background: var(--app-tint-2); }
+.home-icon--tint-3 { background: var(--app-tint-3); }
+.home-icon--tint-4 { background: var(--app-tint-4); }
+
+.home-icon--igusa {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: var(--icon-ground);
+  color: var(--brand);
+  box-shadow: var(--widget-shadow);
+  cursor: pointer;
+}
+.home-igusa-glyph { width: 52px; height: 52px; }
+
+.home-label {
+  font: 500 11px/12px var(--font-ui);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.home-dock {
+  position: sticky;
+  bottom: 8px;
+  margin: auto 0 8px; /* pushed to the bottom when content is short, sticks while scrolling */
+  height: 88px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 0 14px;
+  border-radius: 30px;
+  background: var(--dock-ground);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 1;
+}
+
+.home-app:focus-within .home-icon--igusa { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+/* Wallpaper runs under the frame's status bar while the home screen is showing (scoped by :has, no frame file edited). */
+.phone-screen:has(.home) { background: var(--wallpaper); }
