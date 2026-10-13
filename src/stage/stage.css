@@ -235,9 +235,31 @@
   border-top: 1px solid var(--grid-empty);
 }
 
-@media (max-width: 767px) {
-  .presenter { padding-bottom: 72px; } /* keeps the footer clear of the fixed Watch toggle */
+/* S16: the narrow Watch toggle now sits in the Dynamic Island slot at the top of the phone screen (it used to float
+   bottom-right over the tab bar), so the footer no longer needs extra clearance. */
+.stage--narrow .stage-main { position: relative; }
+.stage--narrow .watch-toggle {
+  position: absolute;
+  top: 5px;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 125px;
+  border-color: var(--island);
+  border-radius: 22px;
+  background: var(--island);
+  color: var(--watch-ink);
+  font-weight: 600;
+  box-shadow: none;
 }
+.stage--narrow .watch-toggle[aria-pressed="true"] { background: var(--island); color: var(--watch-ink); box-shadow: 0 0 0 2px var(--brand); }
+
+/* S16 error prevention: Reset stays one tap for the presenter but reads as a different kind of control —
+   dashed edge, its own glyph, and extra distance from the theme switch. */
+.presenter-group--reset { margin-left: 12px; }
+.stage-button.presenter-reset { border-style: dashed; border-color: var(--muted); color: var(--muted); }
+.presenter-reset svg { display: block; }
 
 /* ---------- S14 presenter: current step, widget ring, Watch bezel pulse ---------- */
 /* Current step is the one control allowed the brand colour: a Patina edge + inner ring, ink text kept for contrast. */
@@ -270,4 +292,26 @@
 @media (prefers-reduced-motion: reduce) {
   .stage[data-flash] [data-testid="widget-medium"],
   .stage[data-flash] [data-testid="watch-frame"] { animation: none; }
+}
+
+/* ---------- S16 fold fix: wide but short viewports (≥ 1024 px wide, < 1040 px tall) ----------
+   The iPhone frame alone is 877 px tall, so a bar underneath it cannot fit a 900 px viewport. Scaling the pair
+   would shrink every rendered target below 44 px, so instead the presenter bar and footer move into the column
+   under the Watch, right of the iPhone; devices stay 1:1 and the whole stage fits without scrolling. */
+@media (min-width: 1024px) and (max-height: 1039.98px) {
+  .stage.stage--wide {
+    display: grid;
+    grid-template-columns: 1fr auto 64px minmax(0, 600px) 1fr;
+    grid-template-rows: 1fr auto auto 1fr;
+    align-items: center;
+    padding: 10px 24px;
+    box-sizing: border-box;
+  }
+  .stage--wide .stage-main,
+  .stage--wide .stage-fit,
+  .stage--wide .stage-pair { display: contents; }
+  .stage--wide .phone-frame { grid-column: 2; grid-row: 1 / -1; }
+  .stage--wide .stage-watch-slot { grid-column: 4; grid-row: 2; justify-self: center; }
+  .stage--wide .presenter { grid-column: 4; grid-row: 3; margin: 32px 0 0; padding: 0; }
+  .stage--wide .presenter-footer { padding: 12px 0 0; }
 }

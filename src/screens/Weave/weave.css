@@ -17,6 +17,7 @@
   border: 1px solid var(--hairline);
   border-radius: var(--radius-control, 8px);
   overflow: hidden;
+  margin: 0 3px;
 }
 .wv-seg-btn {
   min-height: 44px;
@@ -159,4 +160,18 @@
 .wv-seg-btn:focus-visible, .wv-see:focus-visible, .wv-select:focus-visible, .wv-chip:focus-visible {
   outline: 2px solid var(--focus-ring, var(--ink));
   outline-offset: 2px;
+}
+
+/* S16: title above the segmented control. */
+.weave-screen > .wv-head { margin-bottom: 4px; }
+
+/* S16 (Prägnanz): locked values sit in a crisp, clipped chip; the blur stays inside it. */
+.wv-lock {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 3px;
 }

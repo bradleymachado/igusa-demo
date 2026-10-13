@@ -107,6 +107,11 @@
   color: var(--control-ink);
   font: 500 15px var(--font-ui);
   cursor: pointer;
+  /* S16 peak-end: Share stays in view above the tab bar instead of sitting half-cut below the page. */
+  position: sticky;
+  bottom: 12px;
+  z-index: 1;
+  box-shadow: var(--widget-shadow);
 }
 .sm-share:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .sm-toast-wrap {
@@ -123,4 +128,15 @@
   background: var(--control-selected-ground);
   color: var(--control-selected-ink);
   font-size: 13px;
+}
+
+/* S16 (Prägnanz): locked values sit in a crisp, clipped chip; the blur stays inside it. */
+.sm-lock {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+  border: 1px solid var(--hairline);
+  border-radius: 9px;
+  overflow: hidden;
+  margin: 0 3px;
 }

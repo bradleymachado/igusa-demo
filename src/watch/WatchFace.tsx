@@ -96,6 +96,7 @@ export function WatchFace() {
         )}
       </div>
 
+      {events.length === 0 && <p className="wf-empty">Finish setup on iPhone</p>}
       <div className="wf-tiles" data-testid="watch-tiles">
         {events.map((ev) => (
           <div key={ev.id} className="wf-cell">

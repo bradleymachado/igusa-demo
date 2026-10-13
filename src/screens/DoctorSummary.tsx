@@ -46,7 +46,7 @@ function longDate(key: string): string {
 function Pill({ value }: { value: string }) {
   return (
     <>
-      <span className="sm-pill" aria-hidden="true">{value}</span>
+      <span className="sm-lock" aria-hidden="true"><span className="sm-pill" aria-hidden="true">{value}</span></span>
       <span className="sm-sr">—</span>
     </>
   )

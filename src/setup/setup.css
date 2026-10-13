@@ -344,3 +344,14 @@
   outline: 2px solid var(--focus-ring, var(--ink));
   outline-offset: 2px;
 }
+
+/* S16 goal-gradient: a visible "N of 4" beside the dots, in the right-hand spacer that keeps the dots centred. */
+.setup-count {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font: 500 12px var(--font-ui);
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}

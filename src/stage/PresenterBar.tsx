@@ -107,8 +107,11 @@ export function PresenterBar({ onReset, onFlash }: { onReset?: () => void; onFla
             </button>
           ))}
         </div>
-        <div className="presenter-group">
-          <button type="button" className="stage-button" aria-label="Reset demo" onClick={doReset}>
+        <div className="presenter-group presenter-group--reset">
+          <button type="button" className="stage-button presenter-reset" aria-label="Reset demo" onClick={doReset}>
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+              <path d="M2.5 7a4.5 4.5 0 1 0 1.4-3.3M2.5 1.5v2.7h2.7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
             Reset
           </button>
         </div>

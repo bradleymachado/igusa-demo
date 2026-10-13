@@ -14,7 +14,6 @@ export function Triggers({ pairs, events, locked, onSeePatterns }: Props) {
   const byId = new Map(events.map((e) => [e.id, e]))
   return (
     <section className="wv-section" data-testid="weave-triggers" aria-label="Triggers">
-      <h2 className="wv-head">Weave</h2>
       <p className="wv-lede">Which exposures are followed by which symptoms within 6 hours.</p>
       {locked && (
         <button type="button" className="wv-see" aria-label="See patterns, unlock Weave" onClick={onSeePatterns}>

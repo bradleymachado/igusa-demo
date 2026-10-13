@@ -54,7 +54,7 @@ export function SetupFlow() {
             <li key={n} className={n === step ? 'is-current' : n < step ? 'is-done' : undefined} />
           ))}
         </ol>
-        <span className="setup-back-spacer" aria-hidden="true" />
+        <span className="setup-back-spacer setup-count" aria-hidden="true">{step} of 4</span>
       </div>
       {step === 1 && <ChooseCondition selected={templateId} onChoose={choose} />}
       {step === 2 && templateId && <EditEvents templateId={templateId} events={draft} onChange={setDraft} onContinue={() => setStep(3)} />}

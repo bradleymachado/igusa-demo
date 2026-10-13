@@ -5,8 +5,11 @@ import { splitLift } from './pairs'
 export function Pill({ children }: { children: string }) {
   return (
     <>
-      <span className="wv-pill" aria-hidden="true" data-blurred="1">
-        {children}
+      {/* S16: a crisp clipped frame round the blur, so the hidden value reads as a sealed chip rather than a smudge. */}
+      <span className="wv-lock" aria-hidden="true">
+        <span className="wv-pill" aria-hidden="true" data-blurred="1">
+          {children}
+        </span>
       </span>
       <span className="wv-sr">—</span>
     </>

@@ -39,6 +39,8 @@ export function WeaveScreen() {
 
   return (
     <div className="weave-screen" data-testid="weave-screen" data-locked={locked ? '1' : '0'}>
+      {/* S16 (Jakob): the screen title sits above the segmented control, as in iOS, on every segment. */}
+      <h2 className="wv-head">Weave</h2>
       <div className="wv-seg" role="group" aria-label="Weave view">
         {SEGMENTS.map((g) => (
           <button
