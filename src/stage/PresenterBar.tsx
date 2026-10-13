@@ -116,7 +116,7 @@ export function PresenterBar({ onReset, onFlash }: { onReset?: () => void; onFla
           </button>
         </div>
       </div>
-      <footer className="presenter-footer">Prototype. Sample data. Not medical advice.</footer>
+      <footer className="presenter-footer" data-testid="presenter-footer">Prototype. Sample data. Not medical advice.</footer>
     </div>
   )
 }

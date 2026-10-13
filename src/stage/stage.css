@@ -11,6 +11,7 @@
   --watch-bezel: 12px;
   --device-rim: 2.5px;
   --device-gap: 64px;
+  --narrow-footer-h: 28px;
 
   min-height: 100vh;
   display: flex;
@@ -156,7 +157,7 @@
 .stage--narrow .stage-main { padding: 0; display: block; justify-items: stretch; }
 .stage--narrow .stage-pair { display: block; width: 100%; }
 .stage--narrow .phone-frame { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
-.stage--narrow .phone-screen { width: 100%; height: 100vh; height: 100dvh; border-radius: 0; }
+.stage--narrow .phone-screen { width: 100%; height: calc(100vh - var(--narrow-footer-h)); height: calc(100dvh - var(--narrow-footer-h)); border-radius: 0; }
 .stage--narrow .phone-island { display: none; }
 
 .stage--narrow .stage-watch-slot { display: none; }
@@ -314,4 +315,28 @@
   .stage--wide .stage-watch-slot { grid-column: 4; grid-row: 2; justify-self: center; }
   .stage--wide .presenter { grid-column: 4; grid-row: 3; margin: 32px 0 0; padding: 0; }
   .stage--wide .presenter-footer { padding: 12px 0 0; }
+}
+
+/* ---------- S17b (audit Sued 8): disclaimer always in view below 768 px ----------
+   The phone screen is shortened by the footer height, and the footer line is pinned to the bottom of the viewport as a
+   28 px translucent --ground strip: never covers the tab bar, sits over the Watch scrim (20) and toggle (21), and takes
+   no pointer events. The presenter bar stays below the phone (scrollable) with room so its last row clears the strip. */
+.stage--narrow .presenter { padding-bottom: calc(var(--narrow-footer-h) + 12px); }
+.stage--narrow .presenter-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--narrow-footer-h);
+  box-sizing: border-box;
+  padding: 0 12px;
+  font-size: 11px;
+  line-height: calc(var(--narrow-footer-h) - 1px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: color-mix(in srgb, var(--ground) 96%, transparent);
+  border-top: 1px solid var(--grid-empty);
+  z-index: 22;
+  pointer-events: none;
 }

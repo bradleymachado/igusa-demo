@@ -76,9 +76,17 @@
   font-weight: 600;
   color: var(--ink);
 }
+/* S17b (audit Sued 16): on-sheet statement that the prices are not charged. */
+.pw-note {
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--muted);
+}
 .pw-continue {
   min-height: 50px;
-  margin-top: 24px;
+  margin-top: 12px;
   border: 0;
   border-radius: var(--radius-control);
   background: var(--control-selected-ground);

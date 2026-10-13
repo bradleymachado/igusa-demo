@@ -1,4 +1,4 @@
-// Paywall_v1.0 — This section is intended to be the Weave unlock sheet shown over the app view: a close button, the headline and the free/paid line, three plan cards as a radiogroup ($2.99 / month, $14.99 / year preselected, $29.99 once), Continue (unlocks Weave and closes), Restore purchase (toast) and Not now.
+// Paywall_v1.0 — This section is intended to be the Weave unlock sheet shown over the app view: a close button, the headline and the free/paid line, three plan cards as a radiogroup ($2.99 / month, $14.99 / year preselected, $29.99 once), a prototype note (no payment is taken), Continue (unlocks Weave and closes), Restore purchase (toast) and Not now.
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { useIgusaStore } from '../state'
 import './paywall.css'
@@ -91,6 +91,8 @@ export function Paywall() {
           )
         })}
       </div>
+
+      <p className="pw-note" data-testid="paywall-note">Prototype — no payment is taken. Continue simply unlocks Weave for this demo.</p>
 
       <button type="button" className="pw-continue" aria-label={`Continue with ${selected.name}`} onClick={() => unlockWeave()}>
         Continue

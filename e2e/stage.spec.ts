@@ -99,7 +99,7 @@ test.describe('S6 stage — narrow 390×844', () => {
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth)
     console.log(`[S6 narrow] phone screen ${pb.width}x${pb.height} at (${pb.x},${pb.y}) | scrollWidth ${scrollWidth} | watch visible before toggle ${await watch.isVisible()}`)
     expect(pb.width).toBe(390)
-    expect(pb.height).toBe(844)
+    expect(pb.height).toBe(816) // S17b: 844 − 28 px fixed disclaimer strip
     expect(pb.x).toBe(0)
     expect(pb.y).toBe(0)
     expect(scrollWidth).toBeLessThanOrEqual(390)
