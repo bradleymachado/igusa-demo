@@ -3,7 +3,7 @@
 # Igusa — investor demo
 
 A clickable web prototype of an iPhone + Apple Watch symptom logger, with sample data.
-Live: https://bradleymachado.github.io/igusa-demo/
+Live: https://bradmachado.com/igusa-demo/ (the address https://bradleymachado.github.io/igusa-demo/ redirects there)
 
 ## Run locally
 

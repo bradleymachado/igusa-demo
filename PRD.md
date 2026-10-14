@@ -1,5 +1,7 @@
 # Igusa Investor Demo — PRD v1.1
 
+Live: https://bradmachado.com/igusa-demo/ (published 2026-10-14)
+
 2026-10-11 · Owner: Brad · Window: Mon 12 Oct – Fri 23 Oct 2026 (Mac mini arrives in this window; native S0 follows)
 
 v1.1: phone and Apple Watch side by side; setup tutorial for the viewer's own condition replaces the single fixed demo user; visual directions cut from three to two to fit.
